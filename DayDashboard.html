@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#050507;}
+  [contenteditable]:empty:before{content:attr(data-ph);color:#5a5f6a;pointer-events:none;}
+</style>
+</helmet>
+
+<div data-screen-label="Day Business Ecosystem" style="position:relative;width:2200px;margin:0 auto;background:radial-gradient(120% 55% at 50% -3%, #11131b 0%, #0a0b11 44%, #060709 100%);font-family:'Space Grotesk',-apple-system,sans-serif;color:#e9ebef;padding:28px 40px 60px;overflow:hidden;min-height:900px;">
+
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.035) 1px, transparent 1px);background-size:34px 34px;pointer-events:none;"></div>
+
+  <!-- TAB BAR -->
+  <div style="position:relative;display:flex;gap:8px;margin-bottom:22px;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:0;">
+    <button onClick="{{ goDay }}" style="padding:12px 22px 13px;background:transparent;border:none;border-bottom:2.5px solid {{ dayTabBorder }};color:{{ dayTabColor }};font-family:'Space Grotesk';font-size:15px;font-weight:600;letter-spacing:0.4px;cursor:pointer;" style-hover="color:#fff;">Day Business Ecosystem Map</button>
+    <button onClick="{{ goPersonal }}" style="padding:12px 22px 13px;background:transparent;border:none;border-bottom:2.5px solid {{ perTabBorder }};color:{{ perTabColor }};font-family:'Space Grotesk';font-size:15px;font-weight:600;letter-spacing:0.4px;cursor:pointer;display:flex;align-items:center;gap:8px;" style-hover="color:#fff;">🔒 Personal Mind Map</button>
+    <button onClick="{{ goJst }}" style="padding:12px 22px 13px;background:transparent;border:none;border-bottom:2.5px solid {{ jstTabBorder }};color:{{ jstTabColor }};font-family:'Space Grotesk';font-size:15px;font-weight:600;letter-spacing:0.4px;cursor:pointer;" style-hover="color:#fff;">JST Dashboard</button>
+    <div style="flex:1;"></div>
+    <button onClick="{{ onReset }}" style="align-self:center;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1px;color:#d8c08a;border:1px solid rgba(214,178,94,0.4);background:rgba(214,178,94,0.08);border-radius:9px;padding:8px 14px;cursor:pointer;" style-hover="background:rgba(214,178,94,0.16);">↺ Reset ke awal</button>
+  </div>
+
+  <!-- ================= TAB 1: DAY ECOSYSTEM ================= -->
+  <sc-if value="{{ showDay }}" hint-placeholder-val="{{ true }}">
+  <div style="position:relative;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:30px;margin-bottom:6px;">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:4px;color:#6b7280;text-transform:uppercase;margin-bottom:8px;">Executive Business Map · 2026</div>
+        <div contenteditable="true" spellcheck="false" data-kind="meta" data-field="title" onBlur="{{ onEdit }}" style="font-size:34px;font-weight:700;letter-spacing:0.5px;color:#f5f6f8;line-height:1;outline:none;border-radius:6px;padding:1px 6px;margin:0 -6px;cursor:text;" style-hover="background:rgba(255,255,255,0.06);">{{ title }}</div>
+        <div contenteditable="true" spellcheck="false" data-kind="meta" data-field="subtitle" onBlur="{{ onEdit }}" style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#8a909b;margin-top:9px;outline:none;border-radius:5px;padding:1px 6px;margin-left:-6px;cursor:text;" style-hover="background:rgba(255,255,255,0.06);">{{ subtitle }}</div>
+      </div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.5px;color:#7f8590;text-align:right;line-height:1.7;flex:none;">Klik teks = ubah · <span style="color:#6fe39a;">+</span> tambah · <span style="color:#ff6b7a;">×</span> hapus · <span style="color:#c58cff;">⌥</span> cabang<br>Klik <span style="color:#ff6b6b;">P1</span>/<span style="color:#f5b94f;">P2</span>/<span style="color:#5fd0a0;">P3</span> prioritas · ↑↓ urutkan · tersimpan otomatis</div>
+    </div>
+
+    <div style="position:relative;display:flex;justify-content:center;margin:20px 0 0;">
+      <div style="min-width:520px;max-width:680px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.015));border:1px solid rgba(255,255,255,0.16);box-shadow:0 24px 70px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);display:flex;align-items:center;gap:18px;padding:16px 26px;">
+        <span style="width:50px;height:50px;flex:none;border-radius:14px;background:radial-gradient(circle at 50% 35%, rgba(255,255,255,0.18), rgba(255,255,255,0.03));border:1px solid rgba(255,255,255,0.25);display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#f2f3f5" stroke-width="1.6"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3" fill="#f2f3f5" stroke="none"></circle></svg>
+        </span>
+        <div style="flex:1;min-width:0;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:3px;color:#9aa0aa;text-transform:uppercase;margin-bottom:5px;">Core Ecosystem</div>
+          <div contenteditable="true" spellcheck="false" data-kind="block" data-block="root" data-field="title" onBlur="{{ onEdit }}" style="font-size:25px;font-weight:700;letter-spacing:0.5px;color:#fafbfc;line-height:1.05;outline:none;border-radius:6px;padding:1px 6px;margin-left:-6px;cursor:text;" style-hover="background:rgba(255,255,255,0.07);">{{ root.title }}</div>
+        </div>
+        <button data-block="root" onClick="{{ onAddChild }}" title="Tambah kategori utama" style="flex:none;padding:10px 16px;border-radius:10px;border:1px solid rgba(111,227,154,0.45);background:rgba(74,222,128,0.1);color:#7ee6a4;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.5px;cursor:pointer;" style-hover="background:rgba(74,222,128,0.18);">+ Kategori</button>
+      </div>
+    </div>
+
+    <div style="position:relative;height:64px;">
+      <svg viewBox="0 0 1000 64" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;" fill="none">
+        <sc-for list="{{ dayConn }}" as="c" hint-placeholder-count="0">
+          <path d="{{ c.d }}" stroke="{{ c.color }}" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linecap="round" opacity="0.85"></path>
+        </sc-for>
+      </svg>
+      <sc-for list="{{ dayConn }}" as="c" hint-placeholder-count="0">
+        <div style="position:absolute;bottom:-1px;left:{{ c.x }};transform:translateX(-50%);width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid {{ c.color }};"></div>
+      </sc-for>
+    </div>
+
+    <div style="position:relative;display:flex;gap:22px;align-items:flex-start;">
+      <sc-for list="{{ rootChildren }}" as="cat" hint-placeholder-count="3">
+        <div style="flex:1;min-width:0;">
+          <dc-import name="Block" block="{{ cat }}" show-targets="{{ showTargets }}" on-edit="{{ onEdit }}" on-add-child="{{ onAddChild }}" on-del-block="{{ onDelBlock }}" on-add-item="{{ onAddItem }}" on-del-item="{{ onDelItem }}" on-move-item="{{ onMoveItem }}" on-cycle-channel-cat="{{ onCycleChannelCat }}" on-toggle-monetize="{{ onToggleMonetize }}" on-add-chip="{{ onAddChip }}" on-del-chip="{{ onDelChip }}" on-add-task="{{ onAddTask }}" on-check-task="{{ onCheckTask }}" on-toggle-accounts="{{ onToggleAccounts }}" on-cycle-priority="{{ onCyclePriority }}" on-cycle-status="{{ onCycleStatus }}" on-set-drive="{{ onSetDrive }}" style="display:block;width:100%;" hint-size="100%,320px"></dc-import>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ================= TAB 3: JST DASHBOARD ================= -->
+  <sc-if value="{{ showJst }}" hint-placeholder-val="{{ false }}">
+  <div style="position:relative;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:30px;margin-bottom:6px;">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:4px;color:#6b7280;text-transform:uppercase;margin-bottom:8px;">Project Management Office · Monitoring</div>
+        <div contenteditable="true" spellcheck="false" data-kind="jmeta" data-field="title" onBlur="{{ onEdit }}" style="font-size:34px;font-weight:700;letter-spacing:0.5px;color:#f5f6f8;line-height:1;outline:none;border-radius:6px;padding:1px 6px;margin:0 -6px;cursor:text;" style-hover="background:rgba(255,255,255,0.06);">{{ jtitle }}</div>
+      </div>
+      <button data-block="jroot" onClick="{{ onAddChild }}" title="Tambah kategori" style="flex:none;padding:10px 16px;border-radius:10px;border:1px solid rgba(111,227,154,0.45);background:rgba(74,222,128,0.1);color:#7ee6a4;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.5px;cursor:pointer;" style-hover="background:rgba(74,222,128,0.18);">+ Kategori</button>
+    </div>
+
+    <div style="position:relative;height:64px;">
+      <svg viewBox="0 0 1000 64" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;" fill="none">
+        <sc-for list="{{ jConn }}" as="c" hint-placeholder-count="0">
+          <path d="{{ c.d }}" stroke="{{ c.color }}" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linecap="round" opacity="0.85"></path>
+        </sc-for>
+      </svg>
+      <sc-for list="{{ jConn }}" as="c" hint-placeholder-count="0">
+        <div style="position:absolute;bottom:-1px;left:{{ c.x }};transform:translateX(-50%);width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid {{ c.color }};"></div>
+      </sc-for>
+    </div>
+
+    <div style="position:relative;display:flex;gap:16px;align-items:flex-start;">
+      <sc-for list="{{ jChildren }}" as="cat" hint-placeholder-count="7">
+        <div style="flex:1;min-width:0;">
+          <dc-import name="Block" block="{{ cat }}" show-targets="{{ showTargets }}" on-edit="{{ onEdit }}" on-add-child="{{ onAddChild }}" on-del-block="{{ onDelBlock }}" on-add-item="{{ onAddItem }}" on-del-item="{{ onDelItem }}" on-move-item="{{ onMoveItem }}" on-cycle-channel-cat="{{ onCycleChannelCat }}" on-toggle-monetize="{{ onToggleMonetize }}" on-add-chip="{{ onAddChip }}" on-del-chip="{{ onDelChip }}" on-add-task="{{ onAddTask }}" on-check-task="{{ onCheckTask }}" on-toggle-accounts="{{ onToggleAccounts }}" on-cycle-priority="{{ onCyclePriority }}" on-cycle-status="{{ onCycleStatus }}" on-set-drive="{{ onSetDrive }}" style="display:block;width:100%;" hint-size="100%,240px"></dc-import>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ================= LOCK SCREEN ================= -->
+  <sc-if value="{{ showLock }}" hint-placeholder-val="{{ false }}">
+  <div style="position:relative;display:flex;justify-content:center;padding:110px 0 140px;">
+    <div style="width:420px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.015));border:1px solid rgba(255,255,255,0.14);box-shadow:0 30px 80px rgba(0,0,0,0.55);padding:36px 34px;display:flex;flex-direction:column;align-items:center;gap:18px;">
+      <span style="width:58px;height:58px;border-radius:16px;background:rgba(214,178,94,0.12);border:1px solid rgba(214,178,94,0.4);display:flex;align-items:center;justify-content:center;font-size:24px;">🔒</span>
+      <div style="text-align:center;">
+        <div style="font-size:21px;font-weight:700;color:#f5f6f8;margin-bottom:6px;">Personal Mind Map</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8a909b;">Area pribadi — masukkan password untuk membuka</div>
+      </div>
+      <input type="password" placeholder="Password" onInput="{{ onPwInput }}" onKeyDown="{{ onPwKey }}" style="width:100%;padding:13px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.18);background:rgba(0,0,0,0.35);color:#f2f4f7;font-family:'IBM Plex Mono',monospace;font-size:16px;letter-spacing:4px;text-align:center;outline:none;"></input>
+      <sc-if value="{{ pwError }}" hint-placeholder-val="{{ false }}"><div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#ff8a92;">Password salah — coba lagi</div></sc-if>
+      <button onClick="{{ onPwSubmit }}" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(214,178,94,0.5);background:rgba(214,178,94,0.14);color:#e6c878;font-family:'Space Grotesk';font-size:15px;font-weight:600;letter-spacing:0.5px;cursor:pointer;" style-hover="background:rgba(214,178,94,0.24);">Buka</button>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ================= TAB 2: PERSONAL MIND MAP ================= -->
+  <sc-if value="{{ showPersonal }}" hint-placeholder-val="{{ false }}">
+  <div style="position:relative;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:30px;margin-bottom:18px;">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:4px;color:#6b7280;text-transform:uppercase;margin-bottom:8px;">Private · Financial &amp; Life Plan</div>
+        <div contenteditable="true" spellcheck="false" data-kind="pmeta" data-field="title" onBlur="{{ onEdit }}" style="font-size:34px;font-weight:700;letter-spacing:0.5px;color:#f5f6f8;line-height:1;outline:none;border-radius:6px;padding:1px 6px;margin:0 -6px;cursor:text;" style-hover="background:rgba(255,255,255,0.06);">{{ ptitle }}</div>
+      </div>
+      <button onClick="{{ onLockNow }}" title="Kunci kembali" style="flex:none;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1px;color:#9aa0aa;border:1px solid rgba(255,255,255,0.16);background:rgba(255,255,255,0.03);border-radius:9px;padding:8px 14px;cursor:pointer;" style-hover="color:#fff;">🔒 Kunci</button>
+    </div>
+
+    <!-- NORTH STAR -->
+    <div style="border-radius:16px;background:linear-gradient(135deg, rgba(214,178,94,0.16), rgba(214,178,94,0.04) 55%, rgba(255,255,255,0.02));border:1px solid rgba(214,178,94,0.55);box-shadow:0 22px 60px rgba(0,0,0,0.45);padding:22px 26px;margin-bottom:16px;display:flex;gap:34px;align-items:center;">
+      <div style="flex:none;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2.5px;color:#e6c878;margin-bottom:9px;">★ NORTH STAR · TARGET UTAMA</div>
+        <div style="display:flex;align-items:baseline;gap:8px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:15px;color:#d8c08a;">Rp</span>
+          <span contenteditable="true" spellcheck="false" data-kind="goal" data-field="target" onBlur="{{ onEdit }}" style="font-family:'IBM Plex Mono',monospace;font-size:31px;font-weight:700;color:#fbf4e2;outline:none;border-radius:6px;padding:1px 6px;margin-left:-6px;cursor:text;" style-hover="background:rgba(255,255,255,0.07);">{{ goalTarget }}</span>
+        </div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#b8a26b;margin-top:6px;">di usia 50 · {{ goalDeadlineLabel }} · <span style="color:#fbf4e2;font-weight:600;">{{ monthsLeft }} bulan lagi</span></div>
+      </div>
+      <div style="flex:1;min-width:0;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c9ced7;">Net worth sekarang: <span style="color:#fbf4e2;font-weight:600;">{{ nwShort }}</span></span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;color:#e6c878;">{{ progressPct }}</span>
+        </div>
+        <div style="height:14px;border-radius:999px;background:rgba(0,0,0,0.4);border:1px solid rgba(214,178,94,0.3);overflow:hidden;">
+          <div style="height:100%;width:{{ progressW }};min-width:3px;border-radius:999px;background:linear-gradient(90deg, #8a6d2f, #e6c878);"></div>
+        </div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#7f8590;margin-top:7px;">Proyeksi seharusnya hari ini (jalur ke target): {{ expShort }}</div>
+      </div>
+      <div style="flex:none;">
+        <sc-if value="{{ onTrack }}" hint-placeholder-val="{{ false }}"><div style="text-align:center;padding:14px 22px;border-radius:12px;border:1px solid rgba(74,222,128,0.5);background:rgba(74,222,128,0.1);"><div style="font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;letter-spacing:1.5px;color:#6fe39a;">ON TRACK</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#9fd8b4;margin-top:5px;">+{{ gapShort }} di atas proyeksi</div></div></sc-if>
+        <sc-if value="{{ behind }}" hint-placeholder-val="{{ false }}"><div style="text-align:center;padding:14px 22px;border-radius:12px;border:1px solid rgba(255,107,107,0.5);background:rgba(255,107,107,0.08);"><div style="font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;letter-spacing:1.5px;color:#ff8a92;">BEHIND</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#e0a9ad;margin-top:5px;">kurang {{ gapShort }} dari proyeksi</div></div></sc-if>
+      </div>
+    </div>
+
+    <!-- MILESTONES -->
+    <div style="display:grid;grid-template-columns:repeat(5, 1fr);gap:12px;margin-bottom:16px;">
+      <sc-for list="{{ miles }}" as="m" hint-placeholder-count="5">
+        <div style="border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid {{ m.border }};padding:13px 15px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;">
+            <span contenteditable="true" spellcheck="false" data-kind="mile" data-id="{{ m.id }}" data-field="label" onBlur="{{ onEdit }}" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1px;color:#aeb4be;outline:none;border-radius:4px;padding:1px 4px;margin-left:-4px;cursor:text;" style-hover="background:rgba(255,255,255,0.08);">{{ m.label }}</span>
+            <sc-if value="{{ m.achieved }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#6fe39a;">✓</span></sc-if>
+          </div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#6b7280;margin-bottom:4px;">{{ m.ymLabel }} · TARGET</div>
+          <span contenteditable="true" spellcheck="false" data-kind="mile" data-id="{{ m.id }}" data-field="target" onBlur="{{ onEdit }}" title="{{ m.target }}" style="font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:600;color:#ffd591;outline:none;border-radius:4px;padding:1px 5px;margin-left:-5px;cursor:text;display:inline-block;" style-hover="background:rgba(255,255,255,0.08);">{{ m.target }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- SNAPSHOT BULANAN -->
+    <div style="border-radius:14px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.1);padding:16px 20px;margin-bottom:20px;">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#7f8590;flex:1;">SNAPSHOT NET WORTH BULANAN</div>
+        <button onClick="{{ onSnapshot }}" style="padding:8px 16px;border-radius:9px;border:1px solid rgba(91,157,255,0.45);background:rgba(91,157,255,0.1);color:#9cc2ff;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.5px;cursor:pointer;" style-hover="background:rgba(91,157,255,0.2);">📸 Simpan snapshot bulan ini</button>
+      </div>
+      <sc-if value="{{ hasChart }}" hint-placeholder-val="{{ false }}">
+      <svg viewBox="0 0 1000 160" preserveAspectRatio="none" style="display:block;width:100%;height:120px;background:rgba(0,0,0,0.25);border-radius:8px;" fill="none">
+        <path d="{{ snapPath }}" stroke="#5b9dff" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"></path>
+        <sc-for list="{{ snapDots }}" as="p" hint-placeholder-count="0"><circle cx="{{ p.cx }}" cy="{{ p.cy }}" r="3.5" fill="#9cc2ff"></circle></sc-for>
+      </svg>
+      </sc-if>
+      <sc-if value="{{ noChart }}" hint-placeholder-val="{{ true }}"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6b7280;padding:10px 0;">Simpan snapshot tiap bulan — grafik tren muncul setelah ≥ 2 snapshot.</div></sc-if>
+      <sc-if value="{{ hasSnaps }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:11px;">
+        <sc-for list="{{ snapList }}" as="s" hint-placeholder-count="0">
+          <span style="display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#c8cdd6;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);padding:4px 6px 4px 10px;border-radius:7px;">{{ s.label }} · <span style="color:#9cc2ff;font-weight:600;">{{ s.valueFmt }}</span><button data-snap="{{ s.id }}" onClick="{{ onDelSnapshot }}" style="width:14px;height:14px;border:none;background:transparent;color:#6b7280;font-size:11px;cursor:pointer;padding:0;line-height:1;" style-hover="color:#ff8a92;">×</button></span>
+        </sc-for>
+      </div>
+      </sc-if>
+    </div>
+
+    <!-- DASHBOARD SUMMARY -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1.2fr;gap:16px;margin-bottom:26px;">
+      <div style="border-radius:14px;background:linear-gradient(180deg, rgba(74,222,128,0.1), rgba(255,255,255,0.01));border:1px solid rgba(74,222,128,0.35);padding:16px 20px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;color:#6fe39a;margin-bottom:8px;">NILAI ASET</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:600;color:#d9f7e6;">{{ sumAsset }}</div>
+      </div>
+      <div style="border-radius:14px;background:linear-gradient(180deg, rgba(91,157,255,0.1), rgba(255,255,255,0.01));border:1px solid rgba(91,157,255,0.35);padding:16px 20px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;color:#5b9dff;margin-bottom:8px;">NILAI PIUTANG</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:600;color:#dbe8ff;">{{ sumPiutang }}</div>
+      </div>
+      <div style="border-radius:14px;background:linear-gradient(180deg, rgba(255,107,107,0.1), rgba(255,255,255,0.01));border:1px solid rgba(255,107,107,0.35);padding:16px 20px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;color:#ff8a92;margin-bottom:8px;">NILAI UTANG</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:600;color:#ffe0e2;">{{ sumUtang }}</div>
+      </div>
+      <div style="border-radius:14px;background:linear-gradient(180deg, rgba(214,178,94,0.16), rgba(214,178,94,0.03));border:1px solid rgba(214,178,94,0.55);padding:16px 20px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;color:#e6c878;margin-bottom:8px;">TOTAL SISA = ASET + PIUTANG − UTANG</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:700;color:#fbf4e2;">{{ sumTotal }}</div>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:flex-end;margin-bottom:10px;">
+      <button data-block="proot" onClick="{{ onAddChild }}" title="Tambah kategori" style="padding:9px 16px;border-radius:10px;border:1px solid rgba(111,227,154,0.45);background:rgba(74,222,128,0.1);color:#7ee6a4;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.5px;cursor:pointer;" style-hover="background:rgba(74,222,128,0.18);">+ Kategori</button>
+    </div>
+
+    <div style="position:relative;height:64px;">
+      <svg viewBox="0 0 1000 64" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;" fill="none">
+        <sc-for list="{{ pConn }}" as="c" hint-placeholder-count="0">
+          <path d="{{ c.d }}" stroke="{{ c.color }}" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linecap="round" opacity="0.85"></path>
+        </sc-for>
+      </svg>
+      <sc-for list="{{ pConn }}" as="c" hint-placeholder-count="0">
+        <div style="position:absolute;bottom:-1px;left:{{ c.x }};transform:translateX(-50%);width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid {{ c.color }};"></div>
+      </sc-for>
+    </div>
+
+    <div style="position:relative;display:flex;gap:22px;align-items:flex-start;">
+      <sc-for list="{{ pChildren }}" as="cat" hint-placeholder-count="4">
+        <div style="flex:1;min-width:0;">
+          <dc-import name="Block" block="{{ cat }}" show-targets="{{ showTargets }}" on-edit="{{ onEdit }}" on-add-child="{{ onAddChild }}" on-del-block="{{ onDelBlock }}" on-add-item="{{ onAddItem }}" on-del-item="{{ onDelItem }}" on-move-item="{{ onMoveItem }}" on-cycle-channel-cat="{{ onCycleChannelCat }}" on-toggle-monetize="{{ onToggleMonetize }}" on-add-chip="{{ onAddChip }}" on-del-chip="{{ onDelChip }}" on-add-task="{{ onAddTask }}" on-check-task="{{ onCheckTask }}" on-toggle-accounts="{{ onToggleAccounts }}" on-cycle-priority="{{ onCyclePriority }}" on-cycle-status="{{ onCycleStatus }}" on-set-drive="{{ onSetDrive }}" style="display:block;width:100%;" hint-size="100%,280px"></dc-import>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 1280, &quot;height&quot;: 760 },
+  &quot;showTargets&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Display&quot; }
+}">
+class Component extends DCLogic {
+  KEY = 'day_eco_tree_v3';
+  PKEY = 'day_personal_v1';
+  JKEY = 'day_jst_v1';
+  PASS = '313131';
+  uid(p){ return (p||'i') + Math.random().toString(36).slice(2,8); }
+  PALETTE = ['#4f7cff','#b06cff','#22c3d6','#f5a623','#4ade80','#ff6b8a','#d6b25e','#5eead4'];
+  PRIO = ['P1','P2','P3'];
+  PRIO_COLOR = { P1:'#ff6b6b', P2:'#f5b94f', P3:'#5fd0a0' };
+  STATUS = ['New','Growth','Potential','Poor','Reset'];
+  STATUS_COLOR = { New:'#5b9dff', Growth:'#4ade80', Potential:'#f5b94f', Poor:'#ff6b6b', Reset:'#9aa0aa' };
+  pColor(p){ return this.PRIO_COLOR[p] || '#9aa0aa'; }
+  sColor(s){ return this.STATUS_COLOR[s] || '#9aa0aa'; }
+  CHANCAT = ['Personal Branding','Money Channel','Clipper','Education','Affiliate'];
+  CHANCAT_COLOR = { 'Personal Branding':'#5b9dff', 'Money Channel':'#4ade80', 'Clipper':'#f5b94f', 'Education':'#c58cff', 'Affiliate':'#22c3d6' };
+  cColor(c){ return this.CHANCAT_COLOR[c] || '#9aa0aa'; }
+  monLabel(m){ return m ? 'Monetize' : 'Belum Monetize'; }
+  monColor(m){ return m ? '#4ade80' : '#8a909b'; }
+
+  state = { tab:'day', unlocked:false, pwError:false };
+  _pw = '';
+
+  ensure(){ if(this._ready) return;
+    const raw = this.load(this.KEY) || this.load('day_eco_tree_v2') || this.load('day_eco_editable_v1');
+    if(!raw) this.data = this.getDefaults();
+    else if(raw._v===3 && raw.root) this.data = this.migrateTree(raw);
+    else this.data = this.reduce(raw);
+    const praw = this.load(this.PKEY);
+    this.pdata = praw && praw.root ? this.migratePTree(praw) : this.getPDefaults();
+    const jraw = this.load(this.JKEY);
+    this.jdata = jraw && jraw.root ? this.migrateJTree(jraw) : this.getJDefaults();
+    this.ensureGoal();
+    this._ready = true; this.save();
+  }
+  ymNow(){ const dt=new Date(); return dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0'); }
+  ymNum(ym){ const p=String(ym).split('-'); return (+p[0])*12+(+p[1]); }
+  ymLabel(ym){ const M=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des']; const p=String(ym).split('-'); return M[(+p[1])-1]+' '+p[0]; }
+  fmtShort(n){ const neg=n<0?'−':''; const a=Math.abs(n);
+    if(a>=1e12) return neg+'Rp '+(a/1e12).toLocaleString('id-ID',{maximumFractionDigits:2})+' T';
+    if(a>=1e9) return neg+'Rp '+(a/1e9).toLocaleString('id-ID',{maximumFractionDigits:1})+' M';
+    if(a>=1e6) return neg+'Rp '+(a/1e6).toLocaleString('id-ID',{maximumFractionDigits:1})+' jt';
+    return neg+'Rp '+a.toLocaleString('id-ID'); }
+  ensureGoal(){
+    if(!this.pdata.goal){
+      const nw=Math.max(this.sumFin('asset')+this.sumFin('piutang')-this.sumFin('utang'), 1000000);
+      this.pdata.goal={ target:1000000000000, deadline:'2031-07', baseValue:nw, baseYm:this.ymNow() };
+    }
+    if(!Array.isArray(this.pdata.milestones) || !this.pdata.milestones.length){
+      const g=this.pdata.goal; const base=Math.max(g.baseValue,1);
+      this.pdata.milestones=[1,2,3,4,5].map(k=>{
+        const yr=2026+k;
+        return { id:this.uid('ms'), label:'Usia '+(45+k), ym:yr+'-07', target:Math.round(base*Math.pow(g.target/base, k/5)) };
+      });
+    }
+    if(!Array.isArray(this.pdata.snapshots)) this.pdata.snapshots=[];
+  }
+  expectedNow(){
+    const g=this.pdata.goal; const pts=[{t:this.ymNum(g.baseYm), v:Math.max(g.baseValue,1)}]
+      .concat(this.pdata.milestones.map(m=>({t:this.ymNum(m.ym), v:Math.max(m.target,1)}))).sort((a,b)=>a.t-b.t);
+    const t=this.ymNum(this.ymNow());
+    if(t<=pts[0].t) return pts[0].v;
+    if(t>=pts[pts.length-1].t) return pts[pts.length-1].v;
+    for(let i=0;i<pts.length-1;i++){ const a=pts[i], b=pts[i+1];
+      if(t>=a.t && t<=b.t){ const f=(t-a.t)/(b.t-a.t||1); return Math.round(Math.exp(Math.log(a.v)+(Math.log(b.v)-Math.log(a.v))*f)); } }
+    return pts[pts.length-1].v;
+  }
+  load(k){ try{ const s = localStorage.getItem(k); return s ? JSON.parse(s) : null; }catch(e){ return null; } }
+  save(){ try{ localStorage.setItem(this.KEY, JSON.stringify(this.data)); localStorage.setItem(this.PKEY, JSON.stringify(this.pdata)); if(this.jdata) localStorage.setItem(this.JKEY, JSON.stringify(this.jdata)); }catch(e){} }
+
+  blankItem(){ return { id:this.uid('it'), name:'Item Baru', meta:'', desc:'', chips:[], tasks:[], platform:'', link:'', user:'', pass:'', followers:'', status:'New', statusColor:this.sColor('New'), channelCat:'Personal Branding', channelCatColor:this.cColor('Personal Branding'), monetize:false, monetizeLabel:'Belum Monetize', monetizeColor:this.monColor(false), driveUrl:'', hasDrive:false, noDrive:true, value:'' }; }
+  blankBlock(color){ return { id:this.uid('bl'), title:'Kategori Baru', role:'', color: color || this.PALETTE[Math.floor(Math.random()*this.PALETTE.length)], desc:'', accounts:false, statusField:false, idea:false, full:true, fin:'', items:[], children:[] }; }
+
+  normTask(t){ if(typeof t==='string') t={ id:this.uid('t'), text:t }; if(!t.id) t.id=this.uid('t'); if(!t.priority) t.priority='P2'; t.prioColor=this.pColor(t.priority); return t; }
+  normItem(it){ const b=this.blankItem(); const o=Object.assign(b, it, { id: it.id||b.id }); o.chips=Array.isArray(it.chips)?it.chips:[]; o.tasks=(Array.isArray(it.tasks)?it.tasks:[]).map(t=>this.normTask(t)); o.status=it.status||'New'; o.statusColor=this.sColor(o.status); o.channelCat=it.channelCat||'Personal Branding'; o.channelCatColor=this.cColor(o.channelCat); o.monetize=!!it.monetize; o.monetizeLabel=this.monLabel(o.monetize); o.monetizeColor=this.monColor(o.monetize); o.driveUrl=it.driveUrl||''; o.hasDrive=!!o.driveUrl; o.noDrive=!o.hasDrive; o.value=this.fmtVal(it.value); return o; }
+  fmtVal(s){ const n=this.parseVal(s); return n ? n.toLocaleString('id-ID') : (String(s||'').trim()?'0':''); }
+  normBlock(bl){ const b=this.blankBlock(); const o=Object.assign(b, bl, { id: bl.id||b.id }); o.items=(bl.items||[]).map(x=>this.normItem(x)); o.children=(bl.children||[]).map(x=>this.normBlock(x)); o.accounts=!!bl.accounts; o.statusField=!!bl.statusField; o.idea=!!bl.idea; o.fin=bl.fin||''; o.full=(bl.full!==false)&&!o.idea; return o; }
+  migrateTree(d){ d.root=this.normBlock(d.root||{}); d.root.id='root'; if(!d.title)d.title='DAY BUSINESS ECOSYSTEM MAP'; if(d.subtitle===undefined)d.subtitle=''; d._v=3; return d; }
+  migratePTree(d){ d.root=this.normBlock(d.root||{}); d.root.id='proot'; if(!d.title)d.title='PERSONAL MIND MAP'; return d; }
+  migrateJTree(d){ d.root=this.normBlock(d.root||{}); d.root.id='jroot'; if(!d.title)d.title='JST DASHBOARD'; return d; }
+  getJDefaults(){
+    const root={ id:'jroot', title:'JST', role:'PMO', color:'#ffffff', desc:'', accounts:false, statusField:false, idea:false, full:false, fin:'', items:[], children:[] };
+    const cols=['#4f7cff','#b06cff','#f5a623','#4ade80','#22c3d6','#ff6b8a','#d6b25e'];
+    ['PMO SACME','PMO TE','PMO POWER','PMO GS','PMO IT DATCOMM','PMO FO','OTHERS ISSUES'].forEach((t,i)=>{
+      root.children.push(this.normBlock({ title:t, role: t==='OTHERS ISSUES'?'ISSUES':'PMO', color:cols[i%cols.length], full:true }));
+    });
+    return { title:'JST DASHBOARD', root };
+  }
+
+  build4(src){
+    const mk=(picked,o)=> this.normBlock(Object.assign({}, picked||{}, o));
+    const root={ id:'root', title: src.hubTitle||'DAY BUSINESS ECOSYSTEM', role:'CORE', color:'#ffffff', desc:'', accounts:false, statusField:false, idea:false, full:false, fin:'', items:[], children:[] };
+    root.children.push(mk(src.main,    { title:'MAIN BUSINESS', role:'REVENUE · PROJECT', color:'#4f7cff', full:true, accounts:false, statusField:false, idea:false }));
+    root.children.push(mk(src.content, { title:'CONTENT CREATOR', role:'TRAFFIC · MONETISASI', color:'#b06cff', full:true, accounts:true, statusField:true, idea:false }));
+    root.children.push(mk(src.infra,   { title:'DIGITAL INFRASTRUCTURE', role:'SUPPORTS ALL', color:'#22c3d6', full:true, accounts:false, statusField:false, idea:false }));
+    root.children.push(mk(src.idea,    { title:'IDE PROJECT', role:'IDEAS', color:'#4ade80', idea:true, statusField:true, full:false, accounts:false }));
+    return { title: src.title||'DAY BUSINESS ECOSYSTEM MAP', subtitle: src.subtitle||'Real Business · Content Creator · Digital Infrastructure', root, _v:3 };
+  }
+  reduce(raw){
+    let list=[];
+    if(raw.zones){ for(const k in raw.zones){ const z=raw.zones[k]; list.push({ title:z.title||k, items:z.items||[], children:[] }); } }
+    if(raw.root && Array.isArray(raw.root.children)) list=list.concat(raw.root.children);
+    const pick=(re)=> list.find(s=> re.test(String(s.title||'')));
+    return this.build4({
+      main: pick(/real|main business/i), content: pick(/content/i), infra: pick(/infra/i), idea: pick(/ide|future/i),
+      title: raw.title, subtitle: raw.subtitle, hubTitle: raw.hub || (raw.root && raw.root.title),
+    });
+  }
+  getDefaults(){
+    const seed = {
+      main:{items:[
+        {name:'PT Timur Inti Sinergi', meta:'FO · Network', chips:['FO / MyRepublic','Network Project','Cashflow & Aging','Odoo Dashboard']},
+        {name:'PT Maleo Indonesia Bulava', meta:'Supplier', chips:['General Supplier','Maintenance Service','Office & Industrial','Agro / Sawit / Pabrik'], desc:'Target: Procurement · GA · Facility · Estate · Mill'},
+        {name:'PT Langit Anggara Integrasi', meta:'Telco', chips:['Telco Contractor','Supply & Installation','Project Support']},
+        {name:'BesiPro.id', meta:'Fabrikasi', chips:['Tiang PJU','Tower / Pole Telco','Struktur Baja','Kanopi / Gudang','Custom Fab'], desc:'Target: Kontraktor · EPC · Vendor Telco · Pabrik · Pemda'},
+        {name:'NetraLink', meta:'Network', chips:['WiFi / LAN / FO','CCTV','TV Monitoring'], desc:'Target: Kampus & Kantor — area awal Jabodetabek'},
+      ]},
+      content:{items:[
+        {name:'DayAi News', desc:'AI News Daily — RSS+AI+TTS+Video'},
+        {name:'KabarHariIni.id', desc:'Selebriti & gosip — daily auto'},
+        {name:'K-Update ID', desc:'K-Pop News — daily update'},
+        {name:'Bumikubiru', desc:'Earth / Disaster Alert — awareness', status:'Potential'},
+        {name:'KetawaHariIni.id', desc:'Komedi clip — 2–3 / day', status:'Growth'},
+        {name:'ContentMine', desc:'Long→Short clipper — repurposing'},
+        {name:'SatuFakta', desc:'Sains & sejarah — podcast clip'},
+        {name:'Fakta Unik', desc:'Carousel fakta — real image'},
+        {name:'mindfct.id', desc:'Fakta psikologi — kartun cozy'},
+        {name:'Food Fabrique', desc:'Review makanan — Gen-Z style'},
+      ]},
+      infra:{items:[
+        {name:'VPS Automation', desc:'Hostinger Ubuntu · Python · Scheduler · Telegram · Auto Pipeline'},
+        {name:'AI Tools', desc:'GPT · Claude · Gemini · Canva · Image & Video AI'},
+        {name:'Google Sheet System', desc:'Accounts · Content Source · Schedule · Promo Cost'},
+        {name:'AppSheet', desc:'Subkon DB · Edit dari HP · Region & Status · WhatsApp Link'},
+        {name:'Landing Pages', desc:'BesiPro · Maleo · NetraLink · Lead Capture · WA CTA'},
+      ]},
+      idea:{items:[
+        {name:'Warung Impian', desc:'Konsep warung 2×3 m, desain + estimasi biaya, konten inspirasi usaha kecil.'},
+        {name:'AI Sales Agent', desc:'Outreach LinkedIn + WA follow-up otomatis, auto reply, CRM assistant.', status:'Potential'},
+        {name:'Subkon Matching System', desc:'Database subkon + region mapping + status aktif/deactive untuk matching project.'},
+        {name:'Personal Brand', desc:'Authority AI · Bisnis · Telco · Project Management di LinkedIn & TikTok.', status:'Growth'},
+      ]},
+    };
+    return this.build4(Object.assign({title:'DAY BUSINESS ECOSYSTEM MAP', subtitle:'Real Business · Content Creator · Digital Infrastructure', hubTitle:'DAY BUSINESS ECOSYSTEM'}, seed));
+  }
+  getPDefaults(){
+    const root={ id:'proot', title:'PERSONAL', role:'PRIVATE', color:'#ffffff', desc:'', accounts:false, statusField:false, idea:false, full:false, fin:'', items:[], children:[] };
+    root.children.push(this.normBlock({ title:'ASSET', role:'MILIK', color:'#4ade80', full:true, fin:'asset' }));
+    root.children.push(this.normBlock({ title:'UTANG', role:'KEWAJIBAN', color:'#ff6b6b', full:true, fin:'utang' }));
+    root.children.push(this.normBlock({ title:'PIUTANG', role:'TAGIHAN', color:'#5b9dff', full:true, fin:'piutang' }));
+    root.children.push(this.normBlock({ title:'PERSONAL PLAN', role:'RENCANA', color:'#c58cff', full:true }));
+    return { title:'PERSONAL MIND MAP', root };
+  }
+
+  _find(b, id){ if(b.id===id) return b; for(const c of (b.children||[])){ const r=this._find(c,id); if(r) return r; } return null; }
+  findBlock(id){ return this._find(this.data.root, id) || this._find(this.pdata.root, id) || (this.jdata ? this._find(this.jdata.root, id) : null); }
+  _findParent(b, id){ for(const c of (b.children||[])){ if(c.id===id) return b; const r=this._findParent(c,id); if(r) return r; } return null; }
+  findParent(id){ return this._findParent(this.data.root, id) || this._findParent(this.pdata.root, id) || (this.jdata ? this._findParent(this.jdata.root, id) : null); }
+  findItem(blockId, itemId){ const b=this.findBlock(blockId); return b ? (b.items||[]).find(x=>x.id===itemId) : null; }
+
+  blurActive(){ try{ if(document.activeElement && document.activeElement.blur) document.activeElement.blur(); }catch(e){} }
+  clean(s){ return (s||'').replace(/\u00a0/g,' ').replace(/\n{3,}/g,'\n\n').trim(); }
+
+  parseVal(s){ const d=String(s||'').replace(/[^0-9]/g,''); return d ? parseInt(d,10) : 0; }
+  fmtRp(n){ const neg=n<0; const a=Math.abs(n); return (neg?'−Rp ':'Rp ') + a.toLocaleString('id-ID'); }
+  sumFin(kind){ let total=0; const walk=(b)=>{ (b.items||[]).forEach(it=>{ total+=this.parseVal(it.value); }); (b.children||[]).forEach(walk); };
+    (this.pdata.root.children||[]).filter(c=>c.fin===kind).forEach(walk); return total; }
+
+  syncEl(el, txt){ try{ if(el && el.innerText !== txt) el.innerText = txt; }catch(err){} }
+  onEdit = (e)=>{ const d=e.target.dataset; const v=this.clean(e.target.innerText); this.syncEl(e.target, v);
+    if(d.kind==='meta'){ this.data[d.field]=v; }
+    else if(d.kind==='pmeta'){ this.pdata[d.field]=v; }
+    else if(d.kind==='jmeta'){ this.jdata[d.field]=v; }
+    else if(d.kind==='block'){ const b=this.findBlock(d.block); if(b) b[d.field]=v; }
+    else if(d.kind==='item'){ const it=this.findItem(d.block,d.item); if(it) it[d.field]=v; if(d.field==='value'){ if(it){ it.value=this.fmtVal(v); this.syncEl(e.target, it.value); } this.save(); this.forceUpdate(); return; } }
+    else if(d.kind==='goal'){ if(d.field==='target'){ const n=this.parseVal(v); if(n>0) this.pdata.goal.target=n; } else if(d.field==='deadline'){ if(/^\d{4}-\d{2}$/.test(v)) this.pdata.goal.deadline=v; } this.save(); this.forceUpdate(); return; }
+    else if(d.kind==='mile'){ const m=(this.pdata.milestones||[]).find(x=>x.id===d.id); if(m){ if(d.field==='target'){ const n=this.parseVal(v); if(n>0) m.target=n; } else { m[d.field]=v; } } this.save(); this.forceUpdate(); return; }
+    else if(d.kind==='chip'){ const it=this.findItem(d.block,d.item); if(it && it.chips) it.chips[+d.idx]=v; }
+    else if(d.kind==='task'){ const it=this.findItem(d.block,d.item); if(it && it.tasks){ const t=it.tasks.find(x=>x.id===d.task); if(t) t.text=v; } }
+    this.save();
+  };
+  onAddChild = (e)=>{ this.blurActive(); const id=e.currentTarget.dataset.block; const b=this.findBlock(id); if(!b) return; if(!b.children) b.children=[]; b.children.push(this.blankBlock()); this.save(); this.forceUpdate(); };
+  onDelBlock = (e)=>{ this.blurActive(); const id=e.currentTarget.dataset.block; const p=this.findParent(id); if(p){ p.children=p.children.filter(c=>c.id!==id); this.save(); this.forceUpdate(); } };
+  onAddItem = (e)=>{ this.blurActive(); const b=this.findBlock(e.currentTarget.dataset.block); if(!b) return; if(!b.items) b.items=[]; b.items.push(this.blankItem()); this.save(); this.forceUpdate(); };
+  onDelItem = (e)=>{ this.blurActive(); const d=e.currentTarget.dataset; const b=this.findBlock(d.block); if(!b) return; b.items=b.items.filter(x=>x.id!==d.item); this.save(); this.forceUpdate(); };
+  onMoveItem = (e)=>{ this.blurActive(); const d=e.currentTarget.dataset; const b=this.findBlock(d.block); if(!b||!b.items) return; const i=b.items.findIndex(x=>x.id===d.item); if(i<0) return; const j=d.dir==='up'?i-1:i+1; if(j<0||j>=b.items.length) return; const t=b.items[i]; b.items[i]=b.items[j]; b.items[j]=t; this.save(); this.forceUpdate(); };
+  onAddChip = (e)=>{ this.blurActive(); const d=e.currentTarget.dataset; const it=this.findItem(d.block,d.item); if(!it) return; if(!it.chips) it.chips=[]; it.chips.push(''); this.save(); this.forceUpdate(); };
+  onDelChip = (e)=>{ this.blurActive(); const d=e.currentTarget.dataset; const it=this.findItem(d.block,d.item); if(!it||!it.chips) return; it.chips.splice(+d.idx,1); this.save(); this.forceUpdate(); };
+  onAddTask = (e)=>{ this.blurActive(); const d=e.currentTarget.dataset; const it=this.findItem(d.block,d.item); if(!it) return; if(!it.tasks) it.tasks=[]; it.tasks.push(this.normTask({ id:this.uid('t'), text:'', priority:'P2' })); this.save(); this.forceUpdate(); };
+  onCheckTask = (e)=>{ this.blurActive(); const d=e.currentTarget.dataset; const it=this.findItem(d.block,d.item); if(!it||!it.tasks) return; it.tasks=it.tasks.filter(t=>t.id!==d.task); this.save(); this.forceUpdate(); };
+  onCyclePriority = (e)=>{ this.blurActive(); const d=e.currentTarget.dataset; const it=this.findItem(d.block,d.item); if(!it||!it.tasks) return; const t=it.tasks.find(x=>x.id===d.task); if(!t) return; const i=this.PRIO.indexOf(t.priority); t.priority=this.PRIO[(i+1)%this.PRIO.length]; t.prioColor=this.pColor(t.priority); this.save(); this.forceUpdate(); };
+  onCycleStatus = (e)=>{ this.blurActive(); const d=e.currentTarget.dataset; const it=this.findItem(d.block,d.item); if(!it) return; const i=this.STATUS.indexOf(it.status); it.status=this.STATUS[(i+1)%this.STATUS.length]; it.statusColor=this.sColor(it.status); this.save(); this.forceUpdate(); };
+  onCycleChannelCat = (e)=>{ this.blurActive(); const d=e.currentTarget.dataset; const it=this.findItem(d.block,d.item); if(!it) return; const i=this.CHANCAT.indexOf(it.channelCat); it.channelCat=this.CHANCAT[(i+1)%this.CHANCAT.length]; it.channelCatColor=this.cColor(it.channelCat); this.save(); this.forceUpdate(); };
+  onToggleMonetize = (e)=>{ this.blurActive(); const d=e.currentTarget.dataset; const it=this.findItem(d.block,d.item); if(!it) return; it.monetize=!it.monetize; it.monetizeLabel=this.monLabel(it.monetize); it.monetizeColor=this.monColor(it.monetize); this.save(); this.forceUpdate(); };
+  onToggleAccounts = (e)=>{ this.blurActive(); const b=this.findBlock(e.currentTarget.dataset.block); if(!b) return; b.accounts=!b.accounts; if(b.accounts) b.statusField=true; this.save(); this.forceUpdate(); };
+  onSetDrive = (e)=>{ this.blurActive(); const d=e.currentTarget.dataset; const it=this.findItem(d.block,d.item); if(!it) return; let v=window.prompt('Tempel link folder Google Drive untuk item ini:', it.driveUrl||''); if(v===null) return; v=v.trim(); it.driveUrl=v; it.hasDrive=!!v; it.noDrive=!v; this.save(); this.forceUpdate(); };
+  onReset = ()=>{ this.blurActive(); if(!window.confirm('Reset semua data (kedua tab) ke awal?')) return; try{ localStorage.removeItem(this.KEY); localStorage.removeItem(this.PKEY); localStorage.removeItem(this.JKEY); }catch(e){} this.data=this.getDefaults(); this.pdata=this.getPDefaults(); this.jdata=this.getJDefaults(); this.save(); this.forceUpdate(); };
+
+  onSnapshot = ()=>{ this.blurActive(); const ym=this.ymNow(); const nw=this.sumFin('asset')+this.sumFin('piutang')-this.sumFin('utang');
+    const ex=this.pdata.snapshots.find(s=>s.ym===ym); if(ex){ ex.value=nw; } else { this.pdata.snapshots.push({ id:this.uid('sn'), ym, value:nw }); }
+    this.pdata.snapshots.sort((a,b)=>this.ymNum(a.ym)-this.ymNum(b.ym)); this.save(); this.forceUpdate(); };
+  onDelSnapshot = (e)=>{ this.blurActive(); const id=e.currentTarget.dataset.snap; this.pdata.snapshots=this.pdata.snapshots.filter(s=>s.id!==id); this.save(); this.forceUpdate(); };
+  goDay = ()=>{ this.setState({ tab:'day' }); };
+  goJst = ()=>{ this.setState({ tab:'jst' }); };
+  goPersonal = ()=>{ this._pw=''; this.setState({ tab:'personal', pwError:false }); };
+  onLockNow = ()=>{ this.setState({ unlocked:false, tab:'day' }); };
+  onPwInput = (e)=>{ this._pw = e.target.value; };
+  onPwKey = (e)=>{ if(e.key==='Enter') this.tryUnlock(); };
+  onPwSubmit = ()=>{ this.tryUnlock(); };
+  tryUnlock(){ if(this._pw === this.PASS){ this.setState({ unlocked:true, pwError:false }); } else { this.setState({ pwError:true }); } }
+
+  buildConn(cats){ const n=cats.length||1;
+    return cats.map((c,i)=>{ const x=((i+0.5)/n)*1000;
+      return { color:c.color, x:((i+0.5)/n*100).toFixed(2)+'%', d:'M500,0 C500,36 '+x.toFixed(1)+',16 '+x.toFixed(1)+',58' };
+    });
+  }
+  renderVals(){ this.ensure();
+    const tab=this.state.tab, unlocked=this.state.unlocked;
+    const showDay = tab==='day';
+    const showJst = tab==='jst';
+    const showLock = tab==='personal' && !unlocked;
+    const showPersonal = tab==='personal' && unlocked;
+    const n = (this.data.root.children||[]).length || 1;
+    const pn = (this.pdata.root.children||[]).length || 1;
+    const a=this.sumFin('asset'), u=this.sumFin('utang'), pi=this.sumFin('piutang');
+    const nw=a+pi-u; const g=this.pdata.goal||{target:1e12,deadline:'2031-07'};
+    const pct=Math.max(0, nw/g.target*100);
+    const monthsLeft=Math.max(0, this.ymNum(g.deadline)-this.ymNum(this.ymNow()));
+    const exp=this.expectedNow(); const onTrack=nw>=exp;
+    const nowT=this.ymNum(this.ymNow());
+    const miles=(this.pdata.milestones||[]).map(m=>({ id:m.id, label:m.label, ymLabel:this.ymLabel(m.ym), target:m.target.toLocaleString('id-ID'), targetShort:this.fmtShort(m.target), achieved:nw>=m.target, notAchieved:nw<m.target, isNext:this.ymNum(m.ym)>=nowT && !(nw>=m.target), border:(this.ymNum(m.ym)>=nowT && nw<m.target)?'rgba(214,178,94,0.6)':'rgba(255,255,255,0.1)' }));
+    const snaps=(this.pdata.snapshots||[]);
+    let snapPath='', snapDots=[], hasChart=snaps.length>=2;
+    if(snaps.length){ const maxV=Math.max.apply(null, snaps.map(s=>Math.abs(s.value)).concat([1]));
+      const W=1000,H=150,P=10;
+      snapDots=snaps.map((s,i)=>{ const cx=snaps.length>1? P+(W-2*P)*i/(snaps.length-1) : W/2; const cy=H-P-(Math.max(s.value,0)/maxV)*(H-2*P); return { cx:cx.toFixed(1), cy:cy.toFixed(1), id:s.id }; });
+      snapPath=snapDots.map((p,i)=>(i?'L':'M')+p.cx+','+p.cy).join(' ');
+    }
+    const snapList=snaps.slice(-8).reverse().map(s=>({ id:s.id, label:this.ymLabel(s.ym), valueFmt:this.fmtShort(s.value) }));
+    return {
+      title:this.data.title, subtitle:this.data.subtitle, root:this.data.root, rootChildren:this.data.root.children,
+      ptitle:this.pdata.title, pChildren:this.pdata.root.children,
+      busInset:(50/n).toFixed(3)+'%', pInset:(50/pn).toFixed(3)+'%',
+      dayConn:this.buildConn(this.data.root.children||[]), pConn:this.buildConn(this.pdata.root.children||[]),
+      showDay, showLock, showPersonal, pwError:this.state.pwError,
+      dayTabBorder: showDay?'#d6b25e':'transparent', dayTabColor: showDay?'#f5f6f8':'#8a909b',
+      perTabBorder: tab==='personal'?'#d6b25e':'transparent', perTabColor: tab==='personal'?'#f5f6f8':'#8a909b',
+      jstTabBorder: showJst?'#d6b25e':'transparent', jstTabColor: showJst?'#f5f6f8':'#8a909b',
+      showJst, jtitle:this.jdata.title, jChildren:this.jdata.root.children,
+      jConn:this.buildConn(this.jdata.root.children||[]),
+      goJst:this.goJst,
+      sumAsset:this.fmtRp(a), sumUtang:this.fmtRp(u), sumPiutang:this.fmtRp(pi), sumTotal:this.fmtRp(a+pi-u),
+      goalTarget:g.target.toLocaleString('id-ID'), goalTargetShort:this.fmtShort(g.target), goalDeadline:g.deadline, goalDeadlineLabel:this.ymLabel(g.deadline),
+      monthsLeft:String(monthsLeft), nwShort:this.fmtShort(nw), nwFull:this.fmtRp(nw),
+      progressW:Math.min(100,pct).toFixed(2)+'%', progressPct:pct.toLocaleString('id-ID',{maximumFractionDigits:2})+'%',
+      onTrack, behind:!onTrack, expShort:this.fmtShort(exp), gapShort:this.fmtShort(Math.abs(nw-exp)),
+      miles, hasChart, noChart:!hasChart, snapPath, snapDots, snapList, hasSnaps:snaps.length>0,
+      onSnapshot:this.onSnapshot, onDelSnapshot:this.onDelSnapshot,
+      onEdit:this.onEdit, onAddChild:this.onAddChild, onDelBlock:this.onDelBlock, onAddItem:this.onAddItem, onDelItem:this.onDelItem,
+      onMoveItem:this.onMoveItem, onAddChip:this.onAddChip, onDelChip:this.onDelChip, onAddTask:this.onAddTask, onCheckTask:this.onCheckTask,
+      onCyclePriority:this.onCyclePriority, onCycleStatus:this.onCycleStatus, onCycleChannelCat:this.onCycleChannelCat, onToggleMonetize:this.onToggleMonetize,
+      onSetDrive:this.onSetDrive, onToggleAccounts:this.onToggleAccounts, onReset:this.onReset,
+      goDay:this.goDay, goPersonal:this.goPersonal, onLockNow:this.onLockNow, onPwInput:this.onPwInput, onPwKey:this.onPwKey, onPwSubmit:this.onPwSubmit,
+      showTargets:this.props.showTargets!==false,
+    };
+  }
+}
+</script>
+</body>
+</html>

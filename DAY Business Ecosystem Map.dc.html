@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#050507;}
+</style>
+</helmet>
+
+<div data-screen-label="Ecosystem Map" style="position:relative;width:2560px;height:1440px;margin:0 auto;background:radial-gradient(125% 95% at 50% -8%, #11131b 0%, #0a0b11 48%, #060709 100%);font-family:'Space Grotesk',-apple-system,sans-serif;color:#e9ebef;overflow:hidden;">
+
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.035) 1px, transparent 1px);background-size:34px 34px;pointer-events:none;z-index:0;"></div>
+
+  <!-- TOP HEADER -->
+  <div style="position:absolute;left:48px;top:40px;z-index:3;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:4px;color:#6b7280;text-transform:uppercase;margin-bottom:8px;">Executive Business Map · 2026</div>
+    <div style="font-family:'Space Grotesk';font-size:34px;font-weight:700;letter-spacing:0.5px;color:#f5f6f8;line-height:1;">DAY BUSINESS ECOSYSTEM MAP</div>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.5px;color:#8a909b;margin-top:9px;">Real Business Portfolio · Content Creator Project · Digital Infrastructure &amp; Growth Ideas</div>
+  </div>
+
+  <div style="position:absolute;right:48px;top:44px;z-index:3;display:flex;flex-direction:column;align-items:flex-end;gap:14px;">
+    <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;color:#aab0ba;border:1px solid rgba(255,255,255,0.12);border-radius:999px;padding:8px 16px;background:rgba(255,255,255,0.02);">
+      <span style="width:7px;height:7px;border-radius:999px;background:#d6b25e;"></span>DAY · HIDAYAT NOMPO
+    </div>
+    <div style="display:flex;gap:18px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1px;color:#9aa0aa;">
+      <span style="display:flex;align-items:center;gap:6px;"><span style="width:9px;height:9px;border-radius:2px;background:#4f7cff;"></span>Real Business</span>
+      <span style="display:flex;align-items:center;gap:6px;"><span style="width:9px;height:9px;border-radius:2px;background:#b06cff;"></span>Content Creator</span>
+      <span style="display:flex;align-items:center;gap:6px;"><span style="width:9px;height:9px;border-radius:2px;background:#22c3d6;"></span>Infrastructure</span>
+      <span style="display:flex;align-items:center;gap:6px;"><span style="width:9px;height:9px;border-radius:2px;background:#f5a623;"></span>Sales &amp; Growth</span>
+      <span style="display:flex;align-items:center;gap:6px;"><span style="width:9px;height:9px;border-radius:2px;background:#4ade80;"></span>Ide / Future</span>
+    </div>
+  </div>
+
+  <!-- CONNECTORS -->
+  <sc-if value="{{ showConnectors }}" hint-placeholder-val="{{ true }}">
+  <svg viewBox="0 0 2560 1440" style="position:absolute;inset:0;width:2560px;height:1440px;z-index:1;pointer-events:none;" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M1280 250 V274" stroke="rgba(255,255,255,0.22)" stroke-width="2"></path>
+    <path d="M1280 262 H422 V292" stroke="rgba(79,124,255,0.6)" stroke-width="2"></path>
+    <path d="M1280 250 V292" stroke="rgba(245,166,35,0.6)" stroke-width="2"></path>
+    <path d="M1280 262 H2138 V292" stroke="rgba(176,108,255,0.6)" stroke-width="2"></path>
+    <path d="M1280 274 H820 V978 H560 V988" stroke="rgba(34,195,214,0.55)" stroke-width="2"></path>
+    <path d="M1280 274 H1740 V868 H1280 V878" stroke="rgba(74,222,128,0.55)" stroke-width="2"></path>
+    <circle cx="1280" cy="250" r="5" fill="#0a0b11" stroke="rgba(255,255,255,0.5)" stroke-width="2"></circle>
+    <circle cx="422" cy="292" r="4.5" fill="#4f7cff"></circle>
+    <circle cx="1280" cy="292" r="4.5" fill="#f5a623"></circle>
+    <circle cx="2138" cy="292" r="4.5" fill="#b06cff"></circle>
+    <circle cx="560" cy="988" r="4.5" fill="#22c3d6"></circle>
+    <circle cx="1280" cy="878" r="4.5" fill="#4ade80"></circle>
+  </svg>
+  </sc-if>
+
+  <!-- CENTER HUB -->
+  <div style="position:absolute;left:990px;top:128px;width:580px;height:118px;z-index:2;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.015));border:1px solid rgba(255,255,255,0.16);box-shadow:0 24px 70px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.06);display:flex;align-items:center;gap:20px;padding:0 30px;">
+    <span style="width:54px;height:54px;flex:none;border-radius:14px;background:radial-gradient(circle at 50% 35%, rgba(255,255,255,0.18), rgba(255,255,255,0.03));border:1px solid rgba(255,255,255,0.25);display:flex;align-items:center;justify-content:center;">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#f2f3f5" stroke-width="1.6"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3" fill="#f2f3f5" stroke="none"></circle></svg>
+    </span>
+    <div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:3px;color:#9aa0aa;text-transform:uppercase;margin-bottom:5px;">Core Ecosystem</div>
+      <div style="font-family:'Space Grotesk';font-size:27px;font-weight:700;letter-spacing:0.5px;color:#fafbfc;line-height:1;">DAY BUSINESS ECOSYSTEM</div>
+    </div>
+  </div>
+
+  <!-- ============ ZONE 1: REAL BUSINESS (left-top) ============ -->
+  <div style="position:absolute;left:48px;top:292px;width:748px;z-index:2;border-radius:16px;background:linear-gradient(180deg, rgba(79,124,255,0.08), rgba(255,255,255,0.012));border:1px solid rgba(79,124,255,0.3);overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,0.35);">
+    <div style="display:flex;align-items:center;gap:14px;padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.07);background:rgba(79,124,255,0.06);">
+      <span style="width:42px;height:42px;flex:none;border-radius:11px;background:rgba(79,124,255,0.16);border:1px solid rgba(79,124,255,0.45);display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 20 20" width="19" height="19" fill="none" stroke="#7ea0ff" stroke-width="1.5"><rect x="4" y="3" width="12" height="14" rx="1"></rect><line x1="4" y1="8" x2="16" y2="8"></line><line x1="4" y1="12.5" x2="16" y2="12.5"></line></svg>
+      </span>
+      <div style="flex:1;">
+        <div style="font-size:13px;font-family:'IBM Plex Mono',monospace;letter-spacing:2px;color:#7ea0ff;margin-bottom:2px;">01</div>
+        <div style="font-size:21px;font-weight:600;letter-spacing:0.4px;color:#f3f5f8;line-height:1;">REAL BUSINESS</div>
+      </div>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.5px;color:#7ea0ff;padding:5px 12px;border:1px solid rgba(79,124,255,0.4);border-radius:999px;">REVENUE · PROJECT</span>
+    </div>
+    <div style="padding:16px 18px;display:flex;flex-direction:column;gap:11px;">
+
+      <div style="background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(79,124,255,0.75);border-radius:10px;padding:12px 15px;">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;"><span style="font-size:17px;font-weight:600;color:#eef0f4;">PT Timur Inti Sinergi</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#828894;">FO · Network</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">FO / MyRepublic</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Network Project</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Cashflow &amp; Aging</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Odoo Dashboard</span>
+        </div>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(79,124,255,0.75);border-radius:10px;padding:12px 15px;">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;"><span style="font-size:17px;font-weight:600;color:#eef0f4;">PT Maleo Indonesia Bulava</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#828894;">Supplier</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">General Supplier</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Maintenance Service</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Office &amp; Industrial</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Agro / Sawit / Pabrik</span>
+        </div>
+        <sc-if value="{{ showTargets }}" hint-placeholder-val="{{ true }}"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#7a808a;margin-top:9px;">▸ TARGET&nbsp;&nbsp;Procurement · GA · Facility · Estate · Mill</div></sc-if>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(79,124,255,0.75);border-radius:10px;padding:12px 15px;">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;"><span style="font-size:17px;font-weight:600;color:#eef0f4;">PT Langit Anggara Integrasi</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#828894;">Telco</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Telco Contractor</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Supply &amp; Installation</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Project Support</span>
+        </div>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(79,124,255,0.75);border-radius:10px;padding:12px 15px;">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;"><span style="font-size:17px;font-weight:600;color:#eef0f4;">BesiPro.id</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#828894;">Fabrikasi</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Tiang PJU</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Tower / Pole Telco</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Struktur Baja</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Kanopi / Gudang</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Custom Fab</span>
+        </div>
+        <sc-if value="{{ showTargets }}" hint-placeholder-val="{{ true }}"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#7a808a;margin-top:9px;">▸ TARGET&nbsp;&nbsp;Kontraktor · EPC · Vendor Telco · Pabrik · Pemda</div></sc-if>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(79,124,255,0.75);border-radius:10px;padding:12px 15px;">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;"><span style="font-size:17px;font-weight:600;color:#eef0f4;">NetraLink</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#828894;">Network</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">WiFi / LAN / FO</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">CCTV</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">TV Monitoring</span>
+        </div>
+        <sc-if value="{{ showTargets }}" hint-placeholder-val="{{ true }}"><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#7a808a;margin-top:9px;">▸ TARGET&nbsp;&nbsp;Kampus &amp; Kantor — area awal Jabodetabek</div></sc-if>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============ ZONE 3: DIGITAL INFRASTRUCTURE (left-bottom) ============ -->
+  <div style="position:absolute;left:48px;top:986px;width:748px;z-index:2;border-radius:16px;background:linear-gradient(180deg, rgba(34,195,214,0.08), rgba(255,255,255,0.012));border:1px solid rgba(34,195,214,0.3);overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,0.35);">
+    <div style="display:flex;align-items:center;gap:14px;padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.07);background:rgba(34,195,214,0.06);">
+      <span style="width:42px;height:42px;flex:none;border-radius:11px;background:rgba(34,195,214,0.16);border:1px solid rgba(34,195,214,0.45);display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 20 20" width="19" height="19" fill="none" stroke="#48d3e6" stroke-width="1.5"><rect x="4" y="4" width="12" height="5" rx="1"></rect><rect x="4" y="11" width="12" height="5" rx="1"></rect></svg>
+      </span>
+      <div style="flex:1;">
+        <div style="font-size:13px;font-family:'IBM Plex Mono',monospace;letter-spacing:2px;color:#48d3e6;margin-bottom:2px;">03</div>
+        <div style="font-size:21px;font-weight:600;letter-spacing:0.4px;color:#f3f5f8;line-height:1;">DIGITAL INFRASTRUCTURE</div>
+      </div>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.5px;color:#48d3e6;padding:5px 12px;border:1px solid rgba(34,195,214,0.4);border-radius:999px;">SUPPORTS ALL</span>
+    </div>
+    <div style="padding:16px 18px;display:flex;flex-direction:column;gap:9px;">
+      <div style="display:flex;align-items:baseline;gap:14px;background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(34,195,214,0.7);border-radius:10px;padding:11px 15px;"><span style="font-size:15.5px;font-weight:600;color:#eef0f4;min-width:172px;">VPS Automation</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#aeb4be;">Hostinger Ubuntu · Python · Scheduler · Telegram · Auto Pipeline</span></div>
+      <div style="display:flex;align-items:baseline;gap:14px;background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(34,195,214,0.7);border-radius:10px;padding:11px 15px;"><span style="font-size:15.5px;font-weight:600;color:#eef0f4;min-width:172px;">AI Tools</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#aeb4be;">GPT · Claude · Gemini · Canva · Image &amp; Video AI</span></div>
+      <div style="display:flex;align-items:baseline;gap:14px;background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(34,195,214,0.7);border-radius:10px;padding:11px 15px;"><span style="font-size:15.5px;font-weight:600;color:#eef0f4;min-width:172px;">Google Sheet System</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#aeb4be;">Accounts · Content Source · Schedule · Promo Cost</span></div>
+      <div style="display:flex;align-items:baseline;gap:14px;background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(34,195,214,0.7);border-radius:10px;padding:11px 15px;"><span style="font-size:15.5px;font-weight:600;color:#eef0f4;min-width:172px;">AppSheet</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#aeb4be;">Subkon DB · Edit dari HP · Region &amp; Status · WhatsApp Link</span></div>
+      <div style="display:flex;align-items:baseline;gap:14px;background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(34,195,214,0.7);border-radius:10px;padding:11px 15px;"><span style="font-size:15.5px;font-weight:600;color:#eef0f4;min-width:172px;">Landing Pages</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#aeb4be;">BesiPro · Maleo · NetraLink · Lead Capture · WA CTA</span></div>
+    </div>
+  </div>
+
+  <!-- ============ ZONE 4: SALES & GROWTH (middle-top) ============ -->
+  <div style="position:absolute;left:844px;top:292px;width:872px;z-index:2;border-radius:16px;background:linear-gradient(180deg, rgba(245,166,35,0.08), rgba(255,255,255,0.012));border:1px solid rgba(245,166,35,0.3);overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,0.35);">
+    <div style="display:flex;align-items:center;gap:14px;padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.07);background:rgba(245,166,35,0.06);">
+      <span style="width:42px;height:42px;flex:none;border-radius:11px;background:rgba(245,166,35,0.16);border:1px solid rgba(245,166,35,0.45);display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 20 20" width="19" height="19" fill="none" stroke="#f7b955" stroke-width="1.6"><line x1="4" y1="16" x2="16" y2="5"></line><polyline points="9,5 16,5 16,12"></polyline></svg>
+      </span>
+      <div style="flex:1;">
+        <div style="font-size:13px;font-family:'IBM Plex Mono',monospace;letter-spacing:2px;color:#f7b955;margin-bottom:2px;">04</div>
+        <div style="font-size:21px;font-weight:600;letter-spacing:0.4px;color:#f3f5f8;line-height:1;">SALES &amp; GROWTH ENGINE</div>
+      </div>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.5px;color:#f7b955;padding:5px 12px;border:1px solid rgba(245,166,35,0.4);border-radius:999px;">TRAFFIC → LEADS</span>
+    </div>
+    <div style="padding:16px 18px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px;">
+        <div style="background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(245,166,35,0.7);border-radius:10px;padding:12px 15px;">
+          <div style="font-size:16px;font-weight:600;color:#eef0f4;margin-bottom:8px;">TikTok Organic</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Product Education</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Carousel</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">CTA WhatsApp</span></div>
+        </div>
+        <div style="background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(245,166,35,0.7);border-radius:10px;padding:12px 15px;">
+          <div style="font-size:16px;font-weight:600;color:#eef0f4;margin-bottom:8px;">LinkedIn Outreach</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Contractor</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Procurement</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">EPC · B2B</span></div>
+        </div>
+        <div style="background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(245,166,35,0.7);border-radius:10px;padding:12px 15px;">
+          <div style="font-size:16px;font-weight:600;color:#eef0f4;margin-bottom:8px;">WhatsApp Database</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Kontraktor Tower</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Subkon</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Follow-up</span></div>
+        </div>
+        <div style="background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(245,166,35,0.7);border-radius:10px;padding:12px 15px;">
+          <div style="font-size:16px;font-weight:600;color:#eef0f4;margin-bottom:8px;">Google Ads</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Search Ads</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Lead Capture</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Buyer-intent</span></div>
+        </div>
+      </div>
+      <div style="margin-top:14px;background:rgba(245,166,35,0.05);border:1px dashed rgba(245,166,35,0.35);border-radius:10px;padding:13px 16px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#f7b955;margin-bottom:10px;">SALES FUNNEL FLOW</div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#e7e9ee;">
+          <span style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:5px 11px;border-radius:7px;">Traffic Source</span><span style="color:#f7b955;">→</span>
+          <span style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:5px 11px;border-radius:7px;">Landing Page</span><span style="color:#f7b955;">→</span>
+          <span style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:5px 11px;border-radius:7px;">WhatsApp</span><span style="color:#f7b955;">→</span>
+          <span style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:5px 11px;border-radius:7px;">Qualification</span><span style="color:#f7b955;">→</span>
+          <span style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:5px 11px;border-radius:7px;">Quotation</span><span style="color:#f7b955;">→</span>
+          <span style="background:rgba(245,166,35,0.18);border:1px solid rgba(245,166,35,0.5);color:#ffd591;padding:5px 11px;border-radius:7px;">Project / Sales</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ ZONE 5: IDE / FUTURE (middle-bottom) ============ -->
+  <div style="position:absolute;left:844px;top:876px;width:872px;z-index:2;border-radius:16px;background:linear-gradient(180deg, rgba(74,222,128,0.08), rgba(255,255,255,0.012));border:1px solid rgba(74,222,128,0.3);overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,0.35);">
+    <div style="display:flex;align-items:center;gap:14px;padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.07);background:rgba(74,222,128,0.06);">
+      <span style="width:42px;height:42px;flex:none;border-radius:11px;background:rgba(74,222,128,0.16);border:1px solid rgba(74,222,128,0.45);display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 20 20" width="19" height="19" fill="none" stroke="#6fe39a" stroke-width="1.7"><line x1="10" y1="4" x2="10" y2="16"></line><line x1="4" y1="10" x2="16" y2="10"></line></svg>
+      </span>
+      <div style="flex:1;">
+        <div style="font-size:13px;font-family:'IBM Plex Mono',monospace;letter-spacing:2px;color:#6fe39a;margin-bottom:2px;">05</div>
+        <div style="font-size:21px;font-weight:600;letter-spacing:0.4px;color:#f3f5f8;line-height:1;">IDE / FUTURE PROJECT</div>
+      </div>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.5px;color:#6fe39a;padding:5px 12px;border:1px solid rgba(74,222,128,0.4);border-radius:999px;">R&amp;D · IDEAS</span>
+    </div>
+    <div style="padding:16px 18px;display:grid;grid-template-columns:1fr 1fr;gap:11px;">
+      <div style="background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(74,222,128,0.7);border-radius:10px;padding:12px 15px;">
+        <div style="font-size:16px;font-weight:600;color:#eef0f4;margin-bottom:8px;">Warung Impian</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Warung 2×3 m</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Desain + Estimasi</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Franchise Idea</span></div>
+      </div>
+      <div style="background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(74,222,128,0.7);border-radius:10px;padding:12px 15px;">
+        <div style="font-size:16px;font-weight:600;color:#eef0f4;margin-bottom:8px;">AI Sales Agent</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">LinkedIn + WA Follow-up</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Auto Reply</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">CRM Assistant</span></div>
+      </div>
+      <div style="background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(74,222,128,0.7);border-radius:10px;padding:12px 15px;">
+        <div style="font-size:16px;font-weight:600;color:#eef0f4;margin-bottom:8px;">Subkon Matching System</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Database Subkon</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Region Mapping</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Project Matching</span></div>
+      </div>
+      <div style="background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(74,222,128,0.7);border-radius:10px;padding:12px 15px;">
+        <div style="font-size:16px;font-weight:600;color:#eef0f4;margin-bottom:8px;">Personal Brand</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">AI · Bisnis · Telco</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">Project Management</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#c8cdd6;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.08);padding:3px 9px;border-radius:6px;">LinkedIn &amp; TikTok</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ ZONE 2: CONTENT CREATOR (right-top) ============ -->
+  <div style="position:absolute;left:1764px;top:292px;width:748px;z-index:2;border-radius:16px;background:linear-gradient(180deg, rgba(176,108,255,0.08), rgba(255,255,255,0.012));border:1px solid rgba(176,108,255,0.3);overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,0.35);">
+    <div style="display:flex;align-items:center;gap:14px;padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.07);background:rgba(176,108,255,0.06);">
+      <span style="width:42px;height:42px;flex:none;border-radius:11px;background:rgba(176,108,255,0.16);border:1px solid rgba(176,108,255,0.45);display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 20 20" width="19" height="19" fill="#c58cff" stroke="none"><polygon points="6,4 6,16 17,10"></polygon></svg>
+      </span>
+      <div style="flex:1;">
+        <div style="font-size:13px;font-family:'IBM Plex Mono',monospace;letter-spacing:2px;color:#c58cff;margin-bottom:2px;">02</div>
+        <div style="font-size:21px;font-weight:600;letter-spacing:0.4px;color:#f3f5f8;line-height:1;">CONTENT CREATOR BUSINESS</div>
+      </div>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.5px;color:#c58cff;padding:5px 12px;border:1px solid rgba(176,108,255,0.4);border-radius:999px;">REVENUE · LEAD ENGINE</span>
+    </div>
+    <div style="padding:16px 18px;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div style="background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(176,108,255,0.7);border-radius:9px;padding:11px 13px;"><div style="font-size:15px;font-weight:600;color:#eef0f4;">DayAi News</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#a3a9b4;margin-top:4px;line-height:1.4;">AI News Daily — RSS+AI+TTS+Video</div></div>
+      <div style="background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(176,108,255,0.7);border-radius:9px;padding:11px 13px;"><div style="font-size:15px;font-weight:600;color:#eef0f4;">KabarHariIni.id</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#a3a9b4;margin-top:4px;line-height:1.4;">Selebriti &amp; gosip — daily auto</div></div>
+      <div style="background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(176,108,255,0.7);border-radius:9px;padding:11px 13px;"><div style="font-size:15px;font-weight:600;color:#eef0f4;">K-Update ID</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#a3a9b4;margin-top:4px;line-height:1.4;">K-Pop News — daily update</div></div>
+      <div style="background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(176,108,255,0.7);border-radius:9px;padding:11px 13px;"><div style="font-size:15px;font-weight:600;color:#eef0f4;">Bumikubiru</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#a3a9b4;margin-top:4px;line-height:1.4;">Earth / Disaster Alert — awareness</div></div>
+      <div style="background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(176,108,255,0.7);border-radius:9px;padding:11px 13px;"><div style="font-size:15px;font-weight:600;color:#eef0f4;">KetawaHariIni.id</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#a3a9b4;margin-top:4px;line-height:1.4;">Komedi clip — 2–3 / day</div></div>
+      <div style="background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(176,108,255,0.7);border-radius:9px;padding:11px 13px;"><div style="font-size:15px;font-weight:600;color:#eef0f4;">ContentMine</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#a3a9b4;margin-top:4px;line-height:1.4;">Long→Short clipper — repurposing</div></div>
+      <div style="background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(176,108,255,0.7);border-radius:9px;padding:11px 13px;"><div style="font-size:15px;font-weight:600;color:#eef0f4;">SatuFakta</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#a3a9b4;margin-top:4px;line-height:1.4;">Sains &amp; sejarah — podcast clip</div></div>
+      <div style="background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(176,108,255,0.7);border-radius:9px;padding:11px 13px;"><div style="font-size:15px;font-weight:600;color:#eef0f4;">Fakta Unik</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#a3a9b4;margin-top:4px;line-height:1.4;">Carousel fakta — real image</div></div>
+      <div style="background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(176,108,255,0.7);border-radius:9px;padding:11px 13px;"><div style="font-size:15px;font-weight:600;color:#eef0f4;">mindfct.id</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#a3a9b4;margin-top:4px;line-height:1.4;">Fakta psikologi — kartun cozy</div></div>
+      <div style="background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.07);border-left:3px solid rgba(176,108,255,0.7);border-radius:9px;padding:11px 13px;"><div style="font-size:15px;font-weight:600;color:#eef0f4;">Food Fabrique</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#a3a9b4;margin-top:4px;line-height:1.4;">Review makanan — Gen-Z style</div></div>
+    </div>
+  </div>
+
+  <!-- ============ MAIN FOCUS 2026 (right-bottom) ============ -->
+  <div style="position:absolute;left:1764px;top:836px;width:748px;z-index:2;border-radius:16px;background:linear-gradient(180deg, rgba(214,178,94,0.14), rgba(214,178,94,0.03));border:1px solid rgba(214,178,94,0.5);overflow:hidden;box-shadow:0 22px 60px rgba(0,0,0,0.45), 0 0 0 1px rgba(214,178,94,0.08);">
+    <div style="display:flex;align-items:center;gap:14px;padding:15px 20px;border-bottom:1px solid rgba(214,178,94,0.22);background:rgba(214,178,94,0.1);">
+      <span style="width:42px;height:42px;flex:none;border-radius:11px;background:rgba(214,178,94,0.2);border:1px solid rgba(214,178,94,0.55);display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 20 20" width="19" height="19" fill="none" stroke="#e6c878" stroke-width="1.5"><circle cx="10" cy="10" r="7"></circle><circle cx="10" cy="10" r="2.6" fill="#e6c878" stroke="none"></circle></svg>
+      </span>
+      <div style="font-size:21px;font-weight:700;letter-spacing:0.6px;color:#fbf4e2;">MAIN FOCUS 2026</div>
+    </div>
+    <div style="padding:16px 20px;display:flex;flex-direction:column;gap:9px;">
+      <div style="display:flex;gap:12px;align-items:baseline;"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#e6c878;min-width:128px;">BesiPro.id</span><span style="font-size:14.5px;color:#eef0f4;">min. 1 proyek baru / bulan</span></div>
+      <div style="display:flex;gap:12px;align-items:baseline;"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#e6c878;min-width:128px;">PT Maleo</span><span style="font-size:14.5px;color:#eef0f4;">B2B supplier &amp; maintenance leads</span></div>
+      <div style="display:flex;gap:12px;align-items:baseline;"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#e6c878;min-width:128px;">NetraLink</span><span style="font-size:14.5px;color:#eef0f4;">project network kampus / kantor</span></div>
+      <div style="display:flex;gap:12px;align-items:baseline;"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#e6c878;min-width:128px;">TikTok Project</span><span style="font-size:14.5px;color:#eef0f4;">monetisasi + lead engine</span></div>
+      <div style="display:flex;gap:12px;align-items:baseline;"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#e6c878;min-width:128px;">Automation</span><span style="font-size:14.5px;color:#eef0f4;">kurangi kerja manual</span></div>
+      <div style="display:flex;gap:12px;align-items:baseline;"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#e6c878;min-width:128px;">AI Sales Agent</span><span style="font-size:14.5px;color:#eef0f4;">follow-up leads otomatis</span></div>
+    </div>
+  </div>
+
+  <!-- ============ ECOSYSTEM LOGIC (right-bottom strip) ============ -->
+  <sc-if value="{{ showLogic }}" hint-placeholder-val="{{ true }}">
+  <div style="position:absolute;left:1764px;top:1196px;width:748px;z-index:2;border-radius:16px;background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.09);padding:15px 20px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:2.5px;color:#7f8590;margin-bottom:11px;">ECOSYSTEM LOGIC</div>
+    <div style="display:flex;flex-direction:column;gap:7px;font-size:13px;color:#c9ced7;line-height:1.4;">
+      <div><span style="color:#4f7cff;font-weight:600;">Real Business</span> → revenue dari proyek, supplier, jasa &amp; penjualan</div>
+      <div><span style="color:#b06cff;font-weight:600;">Content Creator</span> → revenue dari traffic, monetisasi, affiliate &amp; lead engine</div>
+      <div><span style="color:#22c3d6;font-weight:600;">Digital Infrastructure</span> → menopang Real Business &amp; Content</div>
+      <div><span style="color:#f5a623;font-weight:600;">Sales &amp; Growth</span> ubah traffic jadi leads &amp; sales · <span style="color:#4ade80;font-weight:600;">Future</span> ide bisnis baru</div>
+    </div>
+  </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 1280, &quot;height&quot;: 720 },
+  &quot;showConnectors&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Display&quot; },
+  &quot;showTargets&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Display&quot; },
+  &quot;showLogic&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Display&quot; }
+}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      showConnectors: this.props.showConnectors !== false,
+      showTargets: this.props.showTargets !== false,
+      showLogic: this.props.showLogic !== false,
+    };
+  }
+}
+</script>
+</body>
+</html>

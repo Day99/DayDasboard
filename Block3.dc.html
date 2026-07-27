@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="position:relative;background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.08);border-left:3px solid {{ block.color }};border-radius:13px;padding:13px 15px 14px;box-shadow:0 10px 30px rgba(0,0,0,0.25);">
+
+  <!-- BLOCK HEADER -->
+  <div style="display:flex;align-items:center;gap:9px;">
+    <span style="width:10px;height:10px;flex:none;border-radius:3px;background:{{ block.color }};"></span>
+    <span contenteditable="true" spellcheck="false" data-kind="block" data-block="{{ block.id }}" data-field="title" onBlur="{{ onEdit }}" data-ph="Judul blok…" style="font-size:16px;font-weight:600;color:#f2f4f7;outline:none;border-radius:5px;padding:1px 5px;margin-left:-5px;cursor:text;flex:1;min-width:0;" style-hover="background:rgba(255,255,255,0.08);">{{ block.title }}</span>
+    <span contenteditable="true" spellcheck="false" data-kind="block" data-block="{{ block.id }}" data-field="role" onBlur="{{ onEdit }}" data-ph="peran" style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:1px;color:{{ block.color }};padding:3px 9px;border:1px solid {{ block.color }};border-radius:999px;outline:none;cursor:text;opacity:0.85;">{{ block.role }}</span>
+    <button data-block="{{ block.id }}" onClick="{{ onToggleAccounts }}" title="Aktifkan kolom channel (akun/kategori/monetize)" style="width:24px;height:24px;flex:none;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.03);color:#9aa0aa;font-size:12px;cursor:pointer;line-height:1;" style-hover="color:#c58cff;border-color:rgba(197,140,255,0.5);">⚿</button>
+    <button data-block="{{ block.id }}" onClick="{{ onDelBlock }}" title="Hapus blok" style="width:24px;height:24px;flex:none;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(0,0,0,0.25);color:#9aa0aa;font-size:14px;cursor:pointer;line-height:1;" style-hover="background:rgba(255,80,90,0.2);color:#ff8a92;border-color:rgba(255,80,90,0.4);">×</button>
+  </div>
+  <div contenteditable="true" spellcheck="false" data-kind="block" data-block="{{ block.id }}" data-field="desc" onBlur="{{ onEdit }}" data-ph="Catatan blok (opsional)…" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#9aa0aa;line-height:1.5;margin-top:6px;outline:none;border-radius:5px;padding:2px 5px;margin-left:-5px;cursor:text;min-height:14px;" style-hover="background:rgba(255,255,255,0.06);">{{ block.desc }}</div>
+
+  <!-- ITEMS -->
+  <div style="margin-top:11px;display:flex;flex-direction:column;gap:9px;">
+    <sc-for list="{{ block.items }}" as="item" hint-placeholder-count="0">
+      <div style="position:relative;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.06);border-radius:9px;padding:11px 64px 11px 13px;">
+        <div style="position:absolute;top:8px;right:8px;display:flex;gap:3px;">
+          <button data-block="{{ block.id }}" data-item="{{ item.id }}" data-dir="up" onClick="{{ onMoveItem }}" title="Naik" style="width:18px;height:18px;border-radius:5px;border:1px solid rgba(255,255,255,0.1);background:rgba(0,0,0,0.2);color:#9aa0aa;font-size:11px;cursor:pointer;line-height:1;display:flex;align-items:center;justify-content:center;" style-hover="color:#fff;border-color:rgba(255,255,255,0.3);">↑</button>
+          <button data-block="{{ block.id }}" data-item="{{ item.id }}" data-dir="down" onClick="{{ onMoveItem }}" title="Turun" style="width:18px;height:18px;border-radius:5px;border:1px solid rgba(255,255,255,0.1);background:rgba(0,0,0,0.2);color:#9aa0aa;font-size:11px;cursor:pointer;line-height:1;display:flex;align-items:center;justify-content:center;" style-hover="color:#fff;border-color:rgba(255,255,255,0.3);">↓</button>
+          <button data-block="{{ block.id }}" data-item="{{ item.id }}" onClick="{{ onDelItem }}" title="Hapus item" style="width:18px;height:18px;border-radius:5px;border:1px solid rgba(255,255,255,0.1);background:rgba(0,0,0,0.2);color:#9aa0aa;font-size:12px;cursor:pointer;line-height:1;display:flex;align-items:center;justify-content:center;" style-hover="background:rgba(255,80,90,0.2);color:#ff8a92;border-color:rgba(255,80,90,0.4);">×</button>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="display:inline-flex;align-items:center;gap:3px;flex:none;">
+            <sc-if value="{{ item.hasDrive }}" hint-placeholder-val="{{ false }}">
+              <a href="{{ item.driveUrl }}" target="_blank" rel="noopener" title="Buka folder Google Drive" style="display:inline-flex;line-height:0;"><svg width="15" height="14" viewBox="0 0 87.3 78" xmlns="http://www.w3.org/2000/svg"><path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"></path><path d="m43.65 25-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44a9.06 9.06 0 0 0 -1.2 4.5h27.5z" fill="#00ac47"></path><path d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5h-27.502l5.852 11.5z" fill="#ea4335"></path><path d="m43.65 25 13.75-23.8c-1.35-.8-2.9-1.2-4.5-1.2h-18.5c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"></path><path d="m59.8 53h-32.3l-13.75 23.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"></path><path d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3l-13.75 23.8 16.15 28h27.45c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"></path></svg></a>
+              <button data-block="{{ block.id }}" data-item="{{ item.id }}" onClick="{{ onSetDrive }}" title="Edit link Google Drive" style="border:none;background:transparent;color:#6b7280;font-size:10px;cursor:pointer;padding:0;line-height:1;" style-hover="color:#dfe3e9;">✎</button>
+            </sc-if>
+            <sc-if value="{{ item.noDrive }}" hint-placeholder-val="{{ true }}">
+              <button data-block="{{ block.id }}" data-item="{{ item.id }}" onClick="{{ onSetDrive }}" title="Tambah link Google Drive" style="display:inline-flex;line-height:0;border:none;background:transparent;cursor:pointer;padding:0;opacity:0.28;filter:grayscale(1);" style-hover="opacity:0.8;filter:grayscale(0);"><svg width="15" height="14" viewBox="0 0 87.3 78" xmlns="http://www.w3.org/2000/svg"><path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"></path><path d="m43.65 25-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44a9.06 9.06 0 0 0 -1.2 4.5h27.5z" fill="#00ac47"></path><path d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5h-27.502l5.852 11.5z" fill="#ea4335"></path><path d="m43.65 25 13.75-23.8c-1.35-.8-2.9-1.2-4.5-1.2h-18.5c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"></path><path d="m59.8 53h-32.3l-13.75 23.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"></path><path d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3l-13.75 23.8 16.15 28h27.45c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"></path></svg></button>
+            </sc-if>
+          </span>
+          <sc-if value="{{ block.idea }}" hint-placeholder-val="{{ false }}"><span style="color:{{ block.color }};font-size:15px;flex:none;line-height:1;">•</span></sc-if>
+          <span contenteditable="true" spellcheck="false" data-kind="item" data-block="{{ block.id }}" data-item="{{ item.id }}" data-field="name" onBlur="{{ onEdit }}" data-ph="Nama…" style="font-size:14.5px;font-weight:600;color:#eef0f4;outline:none;border-radius:5px;padding:0 4px;margin-left:-4px;cursor:text;flex:1;min-width:0;" style-hover="background:rgba(255,255,255,0.08);">{{ item.name }}</span>
+          <sc-if value="{{ block.statusField }}" hint-placeholder-val="{{ false }}"><button data-block="{{ block.id }}" data-item="{{ item.id }}" onClick="{{ onCycleStatus }}" title="Ubah status" style="flex:none;font-family:'IBM Plex Mono',monospace;font-size:9.5px;font-weight:600;letter-spacing:0.5px;color:{{ item.statusColor }};border:1px solid {{ item.statusColor }};border-radius:999px;padding:2px 9px;background:transparent;cursor:pointer;line-height:1.3;">{{ item.status }}</button></sc-if>
+        </div>
+
+        <sc-if value="{{ block.accounts }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:7px;">
+          <button data-block="{{ block.id }}" data-item="{{ item.id }}" onClick="{{ onCycleChannelCat }}" title="Ubah kategori channel" style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;font-weight:600;color:{{ item.channelCatColor }};border:1px solid {{ item.channelCatColor }};border-radius:6px;padding:2px 9px;background:transparent;cursor:pointer;line-height:1.3;">{{ item.channelCat }}</button>
+          <button data-block="{{ block.id }}" data-item="{{ item.id }}" onClick="{{ onToggleMonetize }}" title="Ubah status monetize" style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;font-weight:600;color:{{ item.monetizeColor }};border:1px solid {{ item.monetizeColor }};border-radius:6px;padding:2px 9px;background:transparent;cursor:pointer;line-height:1.3;">{{ item.monetizeLabel }}</button>
+        </div>
+        </sc-if>
+
+        <sc-if value="{{ block.fin }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;align-items:center;gap:9px;margin-top:7px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:1.3px;color:#7f8590;flex:none;">NILAI (Rp)</span>
+          <span contenteditable="true" spellcheck="false" data-kind="item" data-block="{{ block.id }}" data-item="{{ item.id }}" data-field="value" onBlur="{{ onEdit }}" data-ph="0" style="font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;color:#ffd591;outline:none;border-radius:4px;padding:2px 6px;margin-left:-6px;cursor:text;min-width:60px;" style-hover="background:rgba(255,255,255,0.08);">{{ item.value }}</span>
+        </div>
+        </sc-if>
+        <div contenteditable="true" spellcheck="false" data-kind="item" data-block="{{ block.id }}" data-item="{{ item.id }}" data-field="desc" onBlur="{{ onEdit }}" data-ph="Tulis deskripsi / catatan bebas…" style="font-size:12px;color:#aeb4be;line-height:1.5;margin-top:6px;outline:none;border-radius:5px;padding:2px 5px;margin-left:-5px;cursor:text;min-height:16px;" style-hover="background:rgba(255,255,255,0.06);">{{ item.desc }}</div>
+
+        <sc-if value="{{ block.full }}" hint-placeholder-val="{{ true }}">
+        <div style="margin-top:8px;max-height:150px;overflow-y:auto;display:flex;flex-direction:column;gap:1px;padding-right:4px;">
+          <sc-for list="{{ item.chips }}" as="chip" hint-placeholder-count="0">
+            <div style="display:flex;align-items:flex-start;gap:7px;padding:2px 0;">
+              <span style="color:#7f8590;font-size:13px;line-height:1.5;flex:none;">•</span>
+              <span contenteditable="true" spellcheck="false" data-kind="chip" data-block="{{ block.id }}" data-item="{{ item.id }}" data-idx="{{ $index }}" onBlur="{{ onEdit }}" data-ph="tulis poin…" style="font-size:12px;color:#c8cdd6;line-height:1.5;outline:none;border-radius:4px;padding:0 3px;margin-left:-3px;cursor:text;flex:1;" style-hover="background:rgba(255,255,255,0.07);">{{ chip }}</span>
+              <button data-block="{{ block.id }}" data-item="{{ item.id }}" data-idx="{{ $index }}" onClick="{{ onDelChip }}" title="Hapus poin" style="width:15px;height:15px;flex:none;margin-top:2px;border:none;background:transparent;color:#6b7280;font-size:12px;cursor:pointer;line-height:1;padding:0;" style-hover="color:#ff8a92;">×</button>
+            </div>
+          </sc-for>
+        </div>
+        <button data-block="{{ block.id }}" data-item="{{ item.id }}" onClick="{{ onAddChip }}" title="Tambah poin" style="margin-top:3px;background:transparent;border:none;color:#7f8590;font-family:'IBM Plex Mono',monospace;font-size:10.5px;cursor:pointer;padding:2px 0;" style-hover="color:#dfe3e9;">+ tambah poin</button>
+        </sc-if>
+
+        <sc-if value="{{ block.accounts }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px 12px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(197,140,255,0.18);">
+          <div style="display:flex;flex-direction:column;gap:2px;"><span style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:1.3px;color:#7f8590;">PLATFORM</span><span contenteditable="true" spellcheck="false" data-kind="item" data-block="{{ block.id }}" data-item="{{ item.id }}" data-field="platform" onBlur="{{ onEdit }}" data-ph="TikTok · IG…" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#dfe3e9;outline:none;border-radius:4px;padding:2px 5px;margin-left:-5px;cursor:text;" style-hover="background:rgba(255,255,255,0.08);">{{ item.platform }}</span></div>
+          <div style="display:flex;flex-direction:column;gap:2px;"><span style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:1.3px;color:#7f8590;">FOLLOWERS</span><span contenteditable="true" spellcheck="false" data-kind="item" data-block="{{ block.id }}" data-item="{{ item.id }}" data-field="followers" onBlur="{{ onEdit }}" data-ph="0" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#6fe39a;outline:none;border-radius:4px;padding:2px 5px;margin-left:-5px;cursor:text;" style-hover="background:rgba(255,255,255,0.08);">{{ item.followers }}</span></div>
+          <div style="display:flex;flex-direction:column;gap:2px;grid-column:1 / 3;"><span style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:1.3px;color:#7f8590;">LINK CHANNEL</span><span contenteditable="true" spellcheck="false" data-kind="item" data-block="{{ block.id }}" data-item="{{ item.id }}" data-field="link" onBlur="{{ onEdit }}" data-ph="https://…" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#9cc2ff;outline:none;border-radius:4px;padding:2px 5px;margin-left:-5px;cursor:text;word-break:break-all;" style-hover="background:rgba(255,255,255,0.08);">{{ item.link }}</span></div>
+          <div style="display:flex;flex-direction:column;gap:2px;"><span style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:1.3px;color:#7f8590;">USER</span><span contenteditable="true" spellcheck="false" data-kind="item" data-block="{{ block.id }}" data-item="{{ item.id }}" data-field="user" onBlur="{{ onEdit }}" data-ph="username" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#dfe3e9;outline:none;border-radius:4px;padding:2px 5px;margin-left:-5px;cursor:text;word-break:break-all;" style-hover="background:rgba(255,255,255,0.08);">{{ item.user }}</span></div>
+          <div style="display:flex;flex-direction:column;gap:2px;"><span style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:1.3px;color:#7f8590;">PASSWORD 🔒</span><span contenteditable="true" spellcheck="false" data-kind="item" data-block="{{ block.id }}" data-item="{{ item.id }}" data-field="pass" onBlur="{{ onEdit }}" data-ph="••••••" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#cdd2da;outline:none;border-radius:4px;padding:2px 5px;margin-left:-5px;cursor:text;word-break:break-all;" style-hover="background:rgba(255,255,255,0.08);">{{ item.pass }}</span></div>
+        </div>
+        </sc-if>
+
+        <sc-if value="{{ block.full }}" hint-placeholder-val="{{ true }}">
+        <div style="margin-top:9px;padding-top:9px;border-top:1px dashed rgba(255,255,255,0.08);">
+          <sc-for list="{{ item.tasks }}" as="task" hint-placeholder-count="0">
+            <div style="display:flex;align-items:flex-start;gap:7px;padding:2px 0;">
+              <button data-block="{{ block.id }}" data-item="{{ item.id }}" data-task="{{ task.id }}" onClick="{{ onCyclePriority }}" title="Ubah prioritas" style="flex:none;margin-top:1px;font-family:'IBM Plex Mono',monospace;font-size:8.5px;font-weight:600;color:{{ task.prioColor }};border:1px solid {{ task.prioColor }};border-radius:4px;padding:1px 4px;background:transparent;cursor:pointer;line-height:1.3;">{{ task.priority }}</button>
+              <button data-block="{{ block.id }}" data-item="{{ item.id }}" data-task="{{ task.id }}" onClick="{{ onCheckTask }}" title="Tandai selesai" style="width:16px;height:16px;flex:none;margin-top:1px;border-radius:5px;border:1.5px solid rgba(255,255,255,0.25);background:transparent;cursor:pointer;padding:0;" style-hover="border-color:#6fe39a;background:rgba(111,227,154,0.18);"></button>
+              <span contenteditable="true" spellcheck="false" data-kind="task" data-block="{{ block.id }}" data-item="{{ item.id }}" data-task="{{ task.id }}" onBlur="{{ onEdit }}" data-ph="tulis task…" style="font-size:12px;color:{{ task.prioColor }};line-height:1.45;outline:none;border-radius:4px;padding:0 3px;margin-left:-3px;cursor:text;flex:1;" style-hover="background:rgba(255,255,255,0.07);">{{ task.text }}</span>
+            </div>
+          </sc-for>
+          <button data-block="{{ block.id }}" data-item="{{ item.id }}" onClick="{{ onAddTask }}" style="margin-top:3px;background:transparent;border:none;color:#7f8590;font-family:'IBM Plex Mono',monospace;font-size:10.5px;cursor:pointer;padding:2px 0;" style-hover="color:#6fe39a;">+ tambah task</button>
+        </div>
+        </sc-if>
+      </div>
+    </sc-for>
+    <button data-block="{{ block.id }}" onClick="{{ onAddItem }}" style="width:100%;padding:8px;background:transparent;border:1px dashed rgba(255,255,255,0.14);border-radius:8px;color:#8a909b;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.5px;cursor:pointer;" style-hover="border-color:rgba(255,255,255,0.35);color:#dfe3e9;">+ Tambah item</button>
+  </div>
+
+  <!-- CHILDREN (BRANCHES) -->
+  <div style="margin-top:11px;padding-left:14px;border-left:1.5px dashed {{ block.color }};display:flex;flex-direction:column;gap:11px;">
+    <sc-for list="{{ block.children }}" as="child" hint-placeholder-count="0">
+      <dc-import name="Block4" block="{{ child }}" show-targets="{{ showTargets }}" on-edit="{{ onEdit }}" on-add-child="{{ onAddChild }}" on-del-block="{{ onDelBlock }}" on-add-item="{{ onAddItem }}" on-del-item="{{ onDelItem }}" on-move-item="{{ onMoveItem }}" on-add-chip="{{ onAddChip }}" on-del-chip="{{ onDelChip }}" on-add-task="{{ onAddTask }}" on-check-task="{{ onCheckTask }}" on-toggle-accounts="{{ onToggleAccounts }}" on-cycle-priority="{{ onCyclePriority }}" on-cycle-status="{{ onCycleStatus }}" on-cycle-channel-cat="{{ onCycleChannelCat }}" on-toggle-monetize="{{ onToggleMonetize }}" on-set-drive="{{ onSetDrive }}" style="display:block;width:100%;" hint-size="100%,120px"></dc-import>
+    </sc-for>
+    <button data-block="{{ block.id }}" onClick="{{ onAddChild }}" style="align-self:flex-start;padding:6px 13px;background:transparent;border:1px dashed {{ block.color }};border-radius:8px;color:{{ block.color }};font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.5px;cursor:pointer;opacity:0.85;" style-hover="opacity:1;">⌥ Tambah cabang</button>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>
